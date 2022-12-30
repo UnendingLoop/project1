@@ -66,9 +66,9 @@ func GetDefaultConfig() Config {
 }
 
 func ForHerokuConfig(config Config) Config {
-	config.MMSAddr = "http://127.0.0.1" + config.Addr + "/mms"
-	config.SupportAddr = "http://127.0.0.1" + config.Addr + "/support"
-	config.IncidentAddr = "http://127.0.0.1" + config.Addr + "/incident"
+	config.MMSAddr = "http://127.0.0.1:8383/mms"
+	config.SupportAddr = "http://127.0.0.1:8383/support"
+	config.IncidentAddr = "http://127.0.0.1:8383/accendent"
 
 	return config
 }
