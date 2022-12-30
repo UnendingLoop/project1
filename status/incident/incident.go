@@ -3,13 +3,13 @@ package incident
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
 type IncidentData struct {
 	Topic  string `json:"topic"`
-	Status string `json:"status"` // возможные статусы: active и closed
+	Status string `json:"status"`
 }
 
 func StatusIncident(url string) []IncidentData {
@@ -26,7 +26,7 @@ func StatusIncident(url string) []IncidentData {
 		return []IncidentData{}
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err.Error())
 		return []IncidentData{}

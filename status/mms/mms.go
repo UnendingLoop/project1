@@ -3,7 +3,7 @@ package mms
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"project/status/check"
 )
@@ -67,7 +67,7 @@ func StatusMMS(url string) []MMSData {
 		return []MMSData{}
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err.Error())
 		return []MMSData{}
