@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"gopkg.in/yaml.v3"
 )
@@ -26,7 +26,7 @@ var GlobalConfig Config
 func NewConfig(file string) Config {
 	var config Config
 
-	yamlFile, err := ioutil.ReadFile(file)
+	yamlFile, err := os.ReadFile(file)
 	if err != nil {
 		fmt.Println(err.Error())
 		return GetDefaultConfig()
@@ -66,10 +66,9 @@ func GetDefaultConfig() Config {
 }
 
 func ForHerokuConfig(config Config) Config {
-	port := config.Addr
-	config.MMSAddr = "http://127.0.0.1" + port + "/mms"
-	config.SupportAddr = "http://127.0.0.1" + port + "/support"
-	config.IncidentAddr = "http://127.0.0.1" + port + "/incident"
+	config.MMSAddr = "http://127.0.0.1" + config.Addr + "/mms"
+	config.SupportAddr = "http://127.0.0.1" + config.Addr + "/support"
+	config.IncidentAddr = "http://127.0.0.1" + config.Addr + "/incident"
 
 	return config
 }

@@ -22,6 +22,7 @@ func listenAndServeHTTP() {
 }
 
 func handleAPI(w http.ResponseWriter, r *http.Request) {
+
 	resultT := result.ResultT{Status: false, Error: "Error on collect data sim"}
 
 	resultSetT := result.GetResultData()
@@ -42,42 +43,6 @@ func handleAPI(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write(response)
-}
-
-func handleMMS(w http.ResponseWriter, r *http.Request) {
-	data, err := os.ReadFile(config.GlobalConfig.MMSFile)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte{})
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(data)
-}
-
-func handleSupport(w http.ResponseWriter, r *http.Request) {
-	data, err := os.ReadFile(config.GlobalConfig.SupportFile)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte{})
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	w.Write(data)
-}
-
-func handleIncident(w http.ResponseWriter, r *http.Request) {
-	data, err := os.ReadFile(config.GlobalConfig.IncidentFile)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte{})
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(data)
 }
 
 func StartServer() {
