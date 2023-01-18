@@ -35,13 +35,13 @@ type ResultSetT struct {
 }
 
 var (
-	smsChan       = make(chan [][]sms.SMSData, 0)
-	mmsChan       = make(chan [][]mms.MMSData, 0)
-	voiceCallChan = make(chan []voicecall.VoiceCallData, 0)
-	emailChan     = make(chan map[string][][]email.EmailData, 0)
-	billingChan   = make(chan billing.BillingData, 0)
-	supportChan   = make(chan []int, 0)
-	incidentsChan = make(chan []incident.IncidentData, 0)
+	smsChan       = make(chan [][]sms.SMSData)
+	mmsChan       = make(chan [][]mms.MMSData)
+	voiceCallChan = make(chan []voicecall.VoiceCallData)
+	emailChan     = make(chan map[string][][]email.EmailData)
+	billingChan   = make(chan billing.BillingData)
+	supportChan   = make(chan []int)
+	incidentsChan = make(chan []incident.IncidentData)
 )
 
 func getSMSStat() {
